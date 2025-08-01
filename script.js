@@ -1,15 +1,3 @@
-// Expandir/collapse Electivos
-document.querySelectorAll(".materia.desplegable").forEach((bloque) => {
-  const titulo = bloque.querySelector(".titulo-electivos");
-
-  if (titulo) {
-    titulo.addEventListener("click", (e) => {
-      bloque.classList.toggle("activo");
-      e.stopPropagation();
-    });
-  }
-});
-
 // --- GUARDAR Y RESTAURAR ESTADO DE MATERIAS ---
 // Genera un ID único para cada materia según su posición en la malla
 function getMateriaId(materia) {
