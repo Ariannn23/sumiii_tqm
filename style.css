@@ -1,0 +1,296 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap");
+
+/* ===== Fuente y fondo general ===== */
+body {
+  font-family: "Dancing Script", cursive;
+  text-align: center;
+  background-color: #fff;
+  background-image: url("https://i.postimg.cc/d02vZcbq/fondo1.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  color: #530e2c;
+}
+
+/* ===== Título principal (estilo anterior restaurado) ===== */
+h1 {
+  font-family: "Dancing Script", cursive;
+  font-weight: 700;
+  font-size: 3rem;
+  padding: 20px 40px;
+  background: linear-gradient(to top, #ffb6c1, #ffa5c5);
+  color: #530e2c;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  margin: 30px auto 20px;
+  display: inline-block;
+  border: 2px solid #ffa5c5;
+}
+.header-container {
+  grid-column: 2 / span 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header-container h1 {
+  font-family: "Dancing Script", cursive;
+  font-weight: 700;
+  font-size: 3rem;
+  padding: 20px 40px;
+  background: linear-gradient(to top, #ffb6c1, #ffa5c5);
+  color: #530e2c;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+  transform: translateX(-240px); /* Ajusta el valor a gusto */
+}
+
+/* ===== Subtítulos ===== */
+h2 {
+  color: #530e2c;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+/* ===== Contenedor principal ===== */
+.container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 50px 30px;
+  padding: 20px;
+  justify-items: stretch;
+  margin-right: 20px;
+}
+
+/* ===== Contenedor por año con sombra ===== */
+.year {
+  background-color: #ffd9e3;
+  border-radius: 10px;
+  padding: 10px;
+  height: 100%;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Scroll personalizado ===== */
+::-webkit-scrollbar {
+  width: 13px;
+  height: 13px;
+  cursor: pointer;
+}
+::-webkit-scrollbar-track {
+  background: #ffe4f1;
+  border-radius: 5px;
+  cursor: pointer;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #530e2c;
+  border-radius: 10px;
+  border: 2px solid #ffe4f1;
+  cursor: pointer;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #7e3653;
+  cursor: pointer;
+}
+
+/* ===== Semestres con sombra ===== */
+.semestre {
+  margin: 10px 0;
+  border: 2px solid #f097b7;
+  padding: 15px;
+  border-radius: 15px;
+  background-color: #ffa5c5;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.semestre:nth-of-type(even) {
+  background-color: #f097b7;
+}
+
+/* ===== Materias con sombra ===== */
+.materia,
+.materia.desplegable {
+  display: block;
+  margin: 8px auto;
+  padding: 8px 10px;
+  width: 400px;
+  background-color: white;
+  border-left: 5px solid #530e2c;
+  border-radius: 10px;
+  font-family: "Dancing Script", cursive;
+  font-size: 20px;
+  color: #530e2c;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.5s ease-in-out;
+  box-sizing: border-box;
+  line-height: 1.2;
+  min-height: 44px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.materia:hover {
+  background-color: #fdf2f6;
+}
+
+/* ===== Estado tachado (materia completada) ===== */
+.materia.tachada {
+  background-color: #e8d8dd;
+  color: gray;
+  text-decoration: line-through;
+  opacity: 0.7;
+  transform: scale(0.98);
+}
+
+/* ===== Sublista de electivos con transiciones más suaves ===== */
+.submaterias {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.8s ease-in-out, opacity 0.8s ease-in-out;
+  opacity: 0;
+  margin-top: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.materia.desplegable.activo .submaterias {
+  max-height: 800px;
+  opacity: 1;
+}
+
+/* ===== Submaterias estilo ===== */
+.submaterias .materia.electivo {
+  width: 100%;
+  background-color: #fff0f6;
+  border-left-color: #7e3653;
+  padding: 8px;
+  border-radius: 10px;
+  font-weight: bold;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Flechita para desplegar ===== */
+.materia.desplegable.activo .titulo-electivos::after {
+  content: " ▴";
+}
+.titulo-electivos::after {
+  content: " ▾";
+}
+.materia.inhabilitado {
+  pointer-events: none;
+  opacity: 0.4;
+  filter: grayscale(100%);
+}
+.footer-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 20px;
+}
+
+.footer-container .copyright {
+  font-family: "Dancing Script", cursive;
+  font-weight: 600;
+  font-size: 22px;
+  color: #530e2c;
+  padding-left: 20px;
+}
+
+/* ===== Copyright footer ===== */
+
+/* ===== Responsive design ===== */
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: repeat(3, 1fr);
+    margin-right: 0;
+  }
+
+  .header-container {
+    grid-column: 1 / -1;
+    transform: none;
+  }
+
+  .header-container h1 {
+    transform: none;
+    font-size: 2.5rem;
+    padding: 16px 30px;
+    text-align: center;
+  }
+
+  .materia,
+  .materia.desplegable {
+    width: 90%;
+    font-size: 18px;
+  }
+  .footer-container {
+    grid-column: 1 / -1;
+  }
+
+  .footer-container .copyright {
+    transform: none;
+    font-size: 1rem;
+    padding: 12px 30px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .materia,
+  .materia.desplegable {
+    width: 95%;
+    font-size: 17px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+  .footer-container {
+    justify-content: center;
+    padding: 15px;
+  }
+
+  .footer-container .copyright {
+    font-size: 20px;
+    padding-left: 0;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .materia,
+  .materia.desplegable {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .header-container h1 {
+    font-size: 2rem;
+    padding: 12px 20px;
+  }
+  .footer-container {
+    padding: 10px;
+  }
+
+  .footer-container .copyright {
+    font-size: 18px;
+    padding-left: 0;
+    text-align: center;
+  }
+}
